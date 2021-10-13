@@ -15,7 +15,8 @@
           <td><%= board.name %></td>
           <td><%= link_to 'Show', board %></td>
           <td><%= link_to 'Edit', edit_board_path(board) %></td>        
-          <td><%= link_to 'Destroy', delete_board_path(board) %></td>        
+          <td><%= link_to 'Destroy', delete_board_path(board) %></td>  
+          <td><%= link_to 'Create List',  new_board_list_path(board) %></td>      
         </tr>
       <% end %>  
     <% end %>
