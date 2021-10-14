@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
-  layout 'flash_notice'
   before_action :set_card, only: %i[ show edit update delete destroy ]
   before_action :authenticate_user!
   before_action :get_list
