@@ -1,20 +1,21 @@
-<div class="Card show">
-  <h1>Show Card</h1>
-  <table summary="Card detail view">
+<h1>Show Card</h1>
+<table class="table">
+  <thead>
     <tr>
-      <th> Name </th>
+      <th scope="col">Card Name</th>
+      <th scope="col">Card Status</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
       <td><%= @card.name %></td>
-    <tr>
-    <tr>
-      <th> Status </th>
       <td><%= @card.status %></td>
-    <tr>
-      <th>Created</th>
-      <td><%= @list.created_at %></td>
+      <td><%= @card.created_at %></td>
+      <td><%= @card.updated_at %></td>
     </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @list.updated_at %></td>
-    </tr>
-  </table>
-</div>
+  </tbody>
+  <%= link_to 'Back', board_list_cards_path %>
+</table>

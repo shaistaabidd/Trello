@@ -1,16 +1,19 @@
-<div class="boards show">
-  <h1>Show Boards</h1>
-  <table summary="Board detail view">
+<h1>Show Board</h1>
+<table class="table">
+  <thead>
     <tr>
-      <th> Name </th>
-      <td><%= @board.name %></td>
-    <tr>
-      <th>Created</th>
-      <td><%= @board.created_at %></td>
+      <th scope="col">Board Name</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated At</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
-      <th>Updated</th>
+      <th scope="row">1</th>
+      <td><%= @board.name %></td>
+      <td><%= @board.created_at %></td>
       <td><%= @board.updated_at %></td>
     </tr>
-  </table>
-</div>
+  </tbody>
+  <%= link_to 'Create List',  new_board_list_path(@board) %>
+</table>

@@ -1,27 +1,24 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[ show edit update delete destroy ]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
   def index
-    @boards = Board.all
+    @boards = current_user.boards
   end
 
   def show
   end
 
   def new
-    #@board = Board.new
-    @board = current_user.boards.build
+    @board = Board.new
   end
 
   def edit
   end
 
   def create
-    #@board= Board.new(board_params)
-    @board = current_user.boards.build(board_params)
+    @board = Board.new(board_params)
     if @board.save
-      #flash[:notice] ="Subject created successfully......"
+      flash[:notice] ="Board created successfully......"
       redirect_to("/boards")
     else
       render('new')
@@ -31,8 +28,8 @@ class BoardsController < ApplicationController
   def update
     
     if @board.update(board_params)
-      #flash[:notice] ="Section updated successfully......"
-      redirect_to(board_path(@board))
+      flash[:notice] ="Board updated successfully......"
+      redirect_to(boards_path(@board))
     else
       render('edit')
     end
@@ -42,16 +39,9 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    #@board = Board.find(params[:id])
     @board.destroy
-    #flash[:notice] ="Section '#{@section.name}' delete successfully......"
+    flash[:notice] ="Board '#{@board.name}' destroyed successfully......"
     redirect_to(boards_path)
-  end
-
-  def correct_user
-    @board=current_user.boards.find_by(id: params[:id])
-    #redirect_to boards_path#, :notice "Not Authorized To Edit this Board" if board.nil?
-    redirect_to boards_path if @board.nil?
   end
 
   private

@@ -1,9 +1,11 @@
 class ListsController < ApplicationController
+  layout 'flash_notice'
   before_action :set_list, only: %i[ show edit update delete destroy ]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   before_action :get_board
   def index
-    @lists = List.all
+    #@lists = List.where(board_id: @board.id)
+    @lists = @board.lists
   end
 
   def show
@@ -17,7 +19,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.board_id = @board.id
     if @list.save
-      #flash[:notice] ="Subject created successfully......"
+      flash[:notice] ="List created successfully......"
       redirect_to board_lists_path(@board)
     else
       render('new')
@@ -30,6 +32,7 @@ class ListsController < ApplicationController
 
   def update
     if @list.update(list_params)
+      flash[:notice] ="List updated successfully......"
       redirect_to board_lists_path(@board)
     else
       render('edit')
@@ -39,7 +42,7 @@ class ListsController < ApplicationController
   def destroy
     @list.destroy
     redirect_to board_lists_path
-    #flash[:notice] ="Section '#{@section.name}' delete successfully......"
+    flash[:notice] ="List '#{@list.name}' deleted successfully......"
   end
 
   private
