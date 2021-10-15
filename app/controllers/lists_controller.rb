@@ -2,9 +2,11 @@ class ListsController < ApplicationController
   before_action :set_list, only: %i[ show edit update delete destroy ]
   before_action :authenticate_user!
   before_action :get_board
+  load_and_authorize_resource :board
+  #load_and_authorize_resource :list, :through => :board 
   def index
     #@lists = List.where(board_id: @board.id)
-    @lists = @board.lists
+    @lists = @board.lists.order("updated_at DESC")
   end
 
   def show
@@ -21,6 +23,7 @@ class ListsController < ApplicationController
       flash[:notice] ="List created successfully......"
       redirect_to board_lists_path(@board)
     else
+      flash[:notice] ="Invalid List Name!!!"
       render('new')
     end
 
@@ -34,6 +37,7 @@ class ListsController < ApplicationController
       flash[:notice] ="List updated successfully......"
       redirect_to board_lists_path(@board)
     else
+      flash[:notice] ="Invalid List Name!!!"
       render('edit')
     end
   end

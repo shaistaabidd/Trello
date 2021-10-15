@@ -1,8 +1,10 @@
 class BoardsController < ApplicationController
+  
   before_action :set_board, only: %i[ show edit update delete destroy ]
   before_action :authenticate_user!
+  load_and_authorize_resource 
   def index
-    @boards = current_user.boards
+    @boards = current_user.boards.order("updated_at DESC")
   end
 
   def show
@@ -29,7 +31,7 @@ class BoardsController < ApplicationController
     
     if @board.update(board_params)
       flash[:notice] ="Board updated successfully......"
-      redirect_to(boards_path(@board))
+      redirect_to boards_path
     else
       render('edit')
     end

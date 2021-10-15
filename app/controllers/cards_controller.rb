@@ -3,9 +3,10 @@ class CardsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_list
   before_action :get_board
+  load_and_authorize_resource :board
   def index
     #@cards = Card.where(list_id: @list.id)
-    @cards = @list.cards
+    @cards = @list.cards.order("updated_at DESC")
   end
 
   def show
@@ -27,7 +28,8 @@ class CardsController < ApplicationController
       flash[:notice] ="Card created successfully......"
       redirect_to board_list_cards_path(@card.list.board, @card.list)
     else
-      render('new')
+      flash[:notice] ="Invalid Card Name!!!"
+      render('new')  
     end
 
   end
@@ -41,6 +43,7 @@ class CardsController < ApplicationController
       flash[:notice] ="Card updated successfully......"
       redirect_to board_list_cards_path(@card)
     else
+      flash[:notice] ="Invalid Card Name!!!"
       render('edit')
     end
   end
