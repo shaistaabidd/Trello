@@ -10,6 +10,7 @@ class ListsController < ApplicationController
   end
 
   def show
+    @cards=@list.cards
   end
 
   def new

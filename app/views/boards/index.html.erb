@@ -1,4 +1,4 @@
-<h1>Board List</h1>
+<h1>All Boards</h1>
 <table class="table">
   <thead>
     <tr>
@@ -12,7 +12,7 @@
     <% @boards.each do |board| %>
       <tr>
         <td><%= board.name %></td>
-        <td><%= link_to 'Show', board %></td>
+        <td><%= link_to 'Show Board Lists', board_lists_path(board) %></td>
         <td><%= link_to 'Edit', edit_board_path(board) %></td>        
         <td><%= link_to 'Destroy', delete_board_path(board) %></td>        
       </tr>
