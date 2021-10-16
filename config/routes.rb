@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     :passwords => "users/passwords",
     :confirmations => "users/confirmations",
     :invitations => "users/invitations"
-
   }
   devise_scope :user do
     authenticated :user do
