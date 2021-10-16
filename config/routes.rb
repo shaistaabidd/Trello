@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :boards do
     resources :lists do
       resources :cards do
-
         member do
           get :delete
         end
