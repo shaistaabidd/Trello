@@ -1,13 +1,15 @@
 <h1>Show Card</h1>
-<table class="table">
+
+<table class = "table">
   <thead>
     <tr>
-      <th scope="col">Card Name</th>
-      <th scope="col">Card Status</th>
-      <th scope="col">Created At</th>
-      <th scope="col">Updated At</th>
+      <th scope = "col">Card Name</th>
+      <th scope = "col">Card Status</th>
+      <th scope = "col">Created At</th>
+      <th scope = "col">Updated At</th>
     </tr>
   </thead>
+  
   <tbody>
     <tr>
       <td><%= @card.name %></td>
@@ -16,5 +18,7 @@
       <td><%= @card.updated_at %></td>
     </tr>
   </tbody>
+  
   <%= link_to 'Back', board_list_cards_path %>
+
 </table>

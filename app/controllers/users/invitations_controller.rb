@@ -1,6 +1,6 @@
 class Users::InvitationsController < Devise::InvitationsController
 
-  #before_action :is_user?, :only => [:new, :create]
+  # before_action :is_user?, :only => [:new, :create]
   
   # def new
   #   super
